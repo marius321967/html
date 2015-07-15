@@ -382,10 +382,10 @@ class HtmlBuilder {
 	 * @param  string  $value
 	 * @return string
 	 */
-	public function glyphIcon($value)
+	public function glyphIcon($value, $title = '')
 	{
 
-		return '<span class="glyphicon glyphicon-'.$value.'"></span>';
+		return '<span class="glyphicon glyphicon-'.$value.'" '.(!empty($title) ? 'title="'.$title.'" ' :null).'></span>';
 	}
 
 	/**
