@@ -3,7 +3,7 @@
 [![License](https://poser.pugx.org/LaravelCollective/html/license.svg)](https://packagist.org/packages/laravelcollective/html)
 
 ## Summary
-Personal fork of [LaravelCollective/html](https://github.com/LaravelCollective/html) with some personal changes.
+Fork of [LaravelCollective/html](https://github.com/LaravelCollective/html) with some changes for personal use.
 
 ### Changes
 - [Twitter Bootstrap glyphIcon](http://getbootstrap.com/components/#glyphicons) generator
