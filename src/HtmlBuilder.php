@@ -1,4 +1,4 @@
-<?php namespace Collective\Html;
+<?php namespace Illuminate\Html;
 
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Traits\Macroable;
@@ -95,25 +95,6 @@ class HtmlBuilder {
 		$attributes['alt'] = $alt;
 
 		return '<img src="'.$this->url->asset($url, $secure).'"'.$this->attributes($attributes).'>';
-	}
-	
-	/**
-	 * Generate a link to a Favicon file.
-	 *
-	 * @param  string  $url
-	 * @param  array   $attributes
-	 * @param  bool    $secure
-	 * @return string
-	 */
-	public function favicon($url, $attributes = array(), $secure = null)
-	{
-		$defaults = array('rel' => 'shortcut icon', 'type' => 'image/x-icon');
-
-		$attributes = $attributes + $defaults;
-
-		$attributes['href'] = $this->url->asset($url, $secure);
-
-		return '<link'.$this->attributes($attributes).'>'.PHP_EOL;
 	}
 
 	/**
@@ -259,29 +240,6 @@ class HtmlBuilder {
 	}
 
 	/**
-	 * Generate a description list of items.
-	 *
-	 * @param  array   $list
-	 * @param  array   $attributes
-	 * @return string
-	 */
-	public function dl(array $list, array $attributes = [])
-	{
-		$attributes = $this->attributes($attributes);
-
-		$html = "<dl{$attributes}>";
-
-		foreach ($list as $key => $value)
-		{
-			$html .= "<dt>$key</dt><dd>$value</dd>";
-		}
-
-		$html .= '</dl>';
-
-		return $html;
-	}
-
-	/**
 	 * Create a listing HTML element.
 	 *
 	 * @param  string  $type
@@ -358,6 +316,9 @@ class HtmlBuilder {
 	{
 		$html = array();
 
+		// For numeric keys we will assume that the key and the value are the same
+		// as this will convert HTML attributes such as "required" to a correct
+		// form like required="required" instead of using incorrect numerics.
 		foreach ((array) $attributes as $key => $value)
 		{
 			$element = $this->attributeElement($key, $value);
@@ -377,9 +338,6 @@ class HtmlBuilder {
 	 */
 	protected function attributeElement($key, $value)
 	{
-		// For numeric keys we will assume that the key and the value are the same
-		// as this will convert HTML attributes such as "required" to a correct
-		// form like required="required" instead of using incorrect numerics.
 		if (is_numeric($key)) $key = $value;
 
 		if ( ! is_null($value)) return $key.'="'.e($value).'"';
@@ -419,20 +377,35 @@ class HtmlBuilder {
 	}
 
 	/**
-	 * Generate a meta tag.
+	 * Add glyphIcon.
 	 *
-	 * @param  string  $name
-	 * @param  string  $content
-	 * @param  array   $attributes
+	 * @param  string  $value
 	 * @return string
 	 */
-	public function meta($name, $content, array $attributes = [])
+	public function glyphIcon($value)
 	{
-		$defaults = compact('name', 'content');
 
-		$attributes = array_merge($defaults, $attributes);
+		return '<span class="glyphicon glyphicon-'.$value.'"></span>';
+	}
 
-		return '<meta'.$this->attributes($attributes).'>'.PHP_EOL;
+	/**
+	 * Add glyphIcon.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function dropletStatus($value)
+	{
+        $status_name = '';
+
+        switch ($value) {
+            case 'new': $status_name = 'info'; break;
+            case 'active': $status_name = 'success'; break;
+            case 'off': $status_name = 'danger'; break;
+            case 'archive': $status_name = 'default'; break;
+        }
+
+		return ' <span class="label label-'.$status_name.'">'.$value.'</span>';
 	}
 
 }
