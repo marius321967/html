@@ -1,9 +1,9 @@
-<?php namespace Illuminate\Html;
+<?php namespace marius321967\Html;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Illuminate\Html\FormBuilder
+ * @see \marius321967\Html\FormBuilder
  */
 class FormFacade extends Facade {
 
