@@ -1,5 +1,5 @@
 {
-  "name": "laravelcollective/html",
+  "name": "marius321967/html",
   "license": "MIT",
   "authors": [
     {
@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Collective\\Html\\": "src/"
+      "marius321967\\Html\\": "src/"
     },
     "files": [
       "src/helpers.php"
