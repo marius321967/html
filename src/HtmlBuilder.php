@@ -388,24 +388,30 @@ class HtmlBuilder {
 		return '<span class="glyphicon glyphicon-'.$value.'" '.(!empty($title) ? 'title="'.$title.'" ' :null).'></span>';
 	}
 
-	/**
-	 * Add glyphIcon.
-	 *
-	 * @param  string  $value
-	 * @return string
-	 */
-	public function dropletStatus($value)
+	public function badge($value, $type = 'default', $tooltip = '')
 	{
+		return ' <span class="label label-'.$type.'" '.( (!empty($tooltip)) ? 'title="'.$tooltip.'"' : null).'>'.$value.'</span>';
+	}
+
+    /**
+     * Add glyphIcon.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function dropletStatus($value)
+    {
         $status_name = '';
+        $tooltip = '';
 
         switch ($value) {
-            case 'new': $status_name = 'info'; break;
-            case 'active': $status_name = 'success'; break;
-            case 'off': $status_name = 'danger'; break;
-            case 'archive': $status_name = 'default'; break;
+            case 'new': $status_name = 'info'; $tooltip = 'This Droplet is currently being set up'; break;
+            case 'active': $status_name = 'success'; $tooltip = 'This Droplet up and running'; break;
+            case 'off': $status_name = 'danger'; $tooltip = 'This Droplet is currently down'; break;
+            case 'archive': $status_name = 'default'; $tooltip = 'This Droplet is destroyed'; break;
         }
 
-		return ' <span class="label label-'.$status_name.'">'.$value.'</span>';
-	}
+        return $this->badge($value, $status_name, $tooltip);
+    }
 
 }
