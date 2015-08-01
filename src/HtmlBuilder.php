@@ -390,7 +390,7 @@ class HtmlBuilder {
 
 	public function badge($value, $type = 'default', $tooltip = '')
 	{
-		return ' <span class="label label-'.$type.'" '.( (!empty($tooltip)) ? 'title="'.$tooltip.'"' : null).'>'.$value.'</span>';
+		return ' <span class="label label-'.$type.'" '.( (!empty($tooltip)) ? 'title="'.$tooltip.'" data-toggle="tooltip" data-placement="top"' : null).'>'.$value.'</span>';
 	}
 
     /**
@@ -405,10 +405,10 @@ class HtmlBuilder {
         $tooltip = '';
 
         switch ($value) {
-            case 'new': $status_name = 'info'; $tooltip = 'This Droplet is currently being set up'; break;
-            case 'active': $status_name = 'success'; $tooltip = 'This Droplet up and running'; break;
-            case 'off': $status_name = 'danger'; $tooltip = 'This Droplet is currently down'; break;
-            case 'archive': $status_name = 'default'; $tooltip = 'This Droplet is destroyed'; break;
+            case 'new': $status_name = 'info'; $tooltip = 'Currently being set up'; break;
+            case 'active': $status_name = 'success'; $tooltip = 'Up and running'; break;
+            case 'off': $status_name = 'danger'; $tooltip = 'Currently down'; break;
+            case 'archive': $status_name = 'default'; $tooltip = 'Destroyed'; break;
         }
 
         return $this->badge($value, $status_name, $tooltip);
