@@ -10,4 +10,6 @@ Fork of [LaravelCollective/html](https://github.com/LaravelCollective/html) with
 - [Twitter Bootstrap badge](http://getbootstrap.com/components/#badges) generator for [DigitalOcean](digitalocean.com) Droplet status 
 - Added 'number' input type to form builder
 
+The namespace has been changed from `Collective\Html` to `marius321967\Html`, so keep that in mind when installing.
+
 Official documentation for Forms & Html for The Laravel Framework can be found at the [LaravelCollective](http://laravelcollective.com) website.
